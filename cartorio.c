@@ -6,6 +6,7 @@
 int registro () //função para registro de nomes
 {
 	//inicio das variaveis
+	int pergunta = 0;
 	char arquivo[40];
 	char cpf[40];
 	char nome[40];
@@ -81,14 +82,41 @@ int registro () //função para registro de nomes
 	fprintf (file,"\n");
 	fclose (file);
 	
+	system ("cls");
+	
+	printf ("Cadastrado com sucesso! \n\n\n");
+	printf ("Você deseja:\n");
+	printf ("Registrar novamente - 1 \n");
+	printf ("Voltar ao menu - 2\n\n");
+	scanf ("%d", &pergunta);
+	
+	switch (pergunta)
+	{
+		case 1:
+			system ("cls");
+			registro ();
+		break;
+		
+		case 2:
+			menu ();
+		break;
+		
+		default:
+			printf("Essa opção não está disponivel\n");
+			system ("pause");
+		break;
+	}
+	
 }
 
 int consulta() //função para consultar nomes
 {
 	setlocale(LC_ALL, "Portuguese");
 	
+	int pergunta = 0;
 	char cpf[40];
 	char conteudo[200];
+	
 	
 	printf ("Digite o CPF a ser consultado: ");
 	scanf ("%s",cpf);
@@ -106,13 +134,35 @@ int consulta() //função para consultar nomes
 		printf ("%s", conteudo);
 	}
 	
-	system ("pause");
+	printf ("Você deseja:\n");
+	printf ("\n\nConsultar novamente - 1 \n");
+	printf ("Voltar ao menu - 2\n\n");
+	scanf ("%d", &pergunta);
+	
+	switch (pergunta)
+	{
+		case 1:
+			system ("cls");
+			consulta ();
+		break;
+		
+		case 2:
+			menu ();
+		break;
+		
+		default:
+			printf("Essa opção não está disponivel\n");
+			system ("pause");
+		break;
+	}
+	
 }
 
 int deletar () //função para deletar nomes
 {
 	setlocale(LC_ALL, "Portuguese");
 	
+	int pergunta = 0;
 	char cpf [40];
 	printf ("Digite CPF do usuário a ser deletado: ");
 	scanf ("%s",cpf);
@@ -124,14 +174,38 @@ int deletar () //função para deletar nomes
 	
 	if(file == NULL) //caso não consiga ler, NULL, manda a mensagem
 	{
-		printf ("O usuário não se encontra no sistema. \n");
-		system ("pause");
+		printf ("Deletado com sucesso \n\n");
+		printf ("Você deseja:\n");
+		printf ("Deletar novamente - 1 \n");
+		printf ("Voltar ao menu - 2\n\n");
+		scanf ("%d", &pergunta);
+	
+		switch (pergunta)
+		{
+			case 1:
+				system ("cls");
+				deletar ();
+			break;
+		
+			case 2:
+				menu ();
+			break;
+		
+			default:
+				printf("Essa opção não está disponivel\n");
+				system ("pause");
+			break;
+		}
+	}
+	else
+	{
+		printf ("Falha ao deletar o arquivo");
 	}
 }
 
-int main()
+int menu ()
 {
-	int  opcao=0; //definindo variaveis
+	int opcao=0; //definindo variaveis
 	int laco=1;
 	
 	for(laco=1;laco=1;) //começo da repetição
@@ -180,4 +254,9 @@ int main()
 		} //fim do switch
 	
 	} //fim da repetição
+}
+
+int main()
+{
+	menu();
 }
