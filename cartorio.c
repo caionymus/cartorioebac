@@ -179,6 +179,7 @@ int deletar () //função para deletar nomes
 		printf ("Deletar novamente - 1 \n");
 		printf ("Voltar ao menu - 2\n\n");
 		scanf ("%d", &pergunta);
+		fclose (file);
 	
 		switch (pergunta)
 		{
@@ -258,5 +259,24 @@ int menu ()
 
 int main()
 {
-	menu();
+	int validacao;
+	char senhaadmin[]="a";
+	
+	printf ("\t Cartório da EBAC\n\n");
+	printf ("Digite a senha do administrador: ");
+	scanf ("%s",senhaadmin);
+	
+	validacao = strcmp (senhaadmin, "admin");
+	
+	if (validacao == 0)
+	{
+		system ("cls");
+		menu();	
+	}
+	
+	else
+	{
+		printf ("Senha incorreta");
+	}
+	
 }
